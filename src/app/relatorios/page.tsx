@@ -333,7 +333,7 @@ export default function RelatoriosPage() {
                       <td className="px-4 py-2.5 text-right">
                         {v.frete_real ? (
                           <span className={
-                            v.frete_real.valor_frete_real > v.frete_previsto_calculado
+                            v.frete_real.valor_frete_real > (v.frete_previsto_calculado ?? 0)
                               ? "text-red-600 font-medium"
                               : "text-green-600 font-medium"
                           }>
