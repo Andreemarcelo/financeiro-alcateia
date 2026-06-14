@@ -156,7 +156,7 @@ function LinhaVenda({
                     <span className="text-gray-500">Imposto</span>
                     <span className="text-blue-600">– {formatCurrency(v.imposto_calculado)}</span>
                   </div>
-                  {v.extras > 0 && (
+                  {(v.extras ?? 0) > 0 && (
                     <div className="flex justify-between">
                       <span className="text-gray-500">Extras</span>
                       <span className="text-gray-600">– {formatCurrency(v.extras)}</span>
