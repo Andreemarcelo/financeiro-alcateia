@@ -30,11 +30,11 @@ export default function RelatoriosPage() {
   // KPIs do mês
   const fat = vendasMes.reduce((s, v) => s + v.valor_venda, 0);
   const custo = vendasMes.reduce((s, v) => s + (v.custo_mercadoria ?? 0), 0);
-  const fretePrev = vendasMes.reduce((s, v) => s + v.frete_previsto_calculado, 0);
+  const fretePrev = vendasMes.reduce((s, v) => s + (v.frete_previsto_calculado ?? 0), 0);
   const freteReal = vendasMes.reduce((s, v) => s + (v.frete_real?.valor_frete_real ?? 0), 0);
-  const imposto = vendasMes.reduce((s, v) => s + v.imposto_calculado, 0);
-  const extras = vendasMes.reduce((s, v) => s + v.extras, 0);
-  const lucroPrev = vendasMes.reduce((s, v) => s + v.lucro_previsto, 0);
+  const imposto = vendasMes.reduce((s, v) => s + (v.imposto_calculado ?? 0), 0);
+  const extras = vendasMes.reduce((s, v) => s + (v.extras ?? 0), 0);
+  const lucroPrev = vendasMes.reduce((s, v) => s + (v.lucro_previsto ?? 0), 0);
   const lucroReal = vendasMes.filter((v) => v.lucro_real != null).reduce((s, v) => s + (v.lucro_real ?? 0), 0);
   const margemPrev = fat > 0 ? (lucroPrev / fat) * 100 : 0;
   const margemReal = fat > 0 ? (lucroReal / fat) * 100 : 0;
@@ -65,7 +65,7 @@ export default function RelatoriosPage() {
         const [y, mo] = v.mes_competencia.split("-");
         return m.mes === `${["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"][parseInt(mo)-1]}/${y.slice(2)}`;
       })
-      .reduce((s, v) => s + v.frete_previsto_calculado, 0),
+      .reduce((s, v) => s + (v.frete_previsto_calculado ?? 0), 0),
     frete_real: vendasComFrete
       .filter((v) => {
         const [y, mo] = v.mes_competencia.split("-");
@@ -417,8 +417,8 @@ export default function RelatoriosPage() {
                 {meses.map((m) => {
                   const vm = vendasComFrete.filter((v) => v.mes_competencia === m);
                   const f = vm.reduce((s, v) => s + v.valor_venda, 0);
-                  const lp = vm.reduce((s, v) => s + v.lucro_previsto, 0);
-                  const fp = vm.reduce((s, v) => s + v.frete_previsto_calculado, 0);
+                  const lp = vm.reduce((s, v) => s + (v.lucro_previsto ?? 0), 0);
+                  const fp = vm.reduce((s, v) => s + (v.frete_previsto_calculado ?? 0), 0);
                   const fr = vm.reduce((s, v) => s + (v.frete_real?.valor_frete_real ?? 0), 0);
                   const mg = f > 0 ? (lp / f) * 100 : 0;
                   const df = fr - fp;
@@ -466,11 +466,11 @@ export default function RelatoriosPage() {
                     {formatCurrency(vendasComFrete.reduce((s, v) => s + v.valor_venda, 0))}
                   </td>
                   <td className="px-4 py-2.5 text-right text-green-700">
-                    {formatCurrency(vendasComFrete.reduce((s, v) => s + v.lucro_previsto, 0))}
+                    {formatCurrency(vendasComFrete.reduce((s, v) => s + (v.lucro_previsto ?? 0), 0))}
                   </td>
                   <td className="px-4 py-2.5 text-right text-gray-500">—</td>
                   <td className="px-4 py-2.5 text-right text-orange-500">
-                    {formatCurrency(vendasComFrete.reduce((s, v) => s + v.frete_previsto_calculado, 0))}
+                    {formatCurrency(vendasComFrete.reduce((s, v) => s + (v.frete_previsto_calculado ?? 0), 0))}
                   </td>
                   <td className="px-4 py-2.5 text-right">
                     {formatCurrency(vendasComFrete.reduce((s, v) => s + (v.frete_real?.valor_frete_real ?? 0), 0))}

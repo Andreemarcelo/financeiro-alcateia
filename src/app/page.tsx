@@ -34,7 +34,7 @@ export default function Dashboard() {
 
   const fat_mes = vendas_mes.reduce((s, v) => s + v.valor_venda, 0);
   const fat_ant = vendas_anterior.reduce((s, v) => s + v.valor_venda, 0);
-  const lp_mes  = vendas_mes.reduce((s, v) => s + v.lucro_previsto, 0);
+  const lp_mes  = vendas_mes.reduce((s, v) => s + (v.lucro_previsto ?? 0), 0);
   const lr_mes  = vendas_mes.reduce((s, v) => s + (v.lucro_real ?? 0), 0);
   const fp_mes  = vendas_mes.reduce((s, v) => s + (v.frete_previsto_calculado ?? 0), 0);
   const fr_mes  = vendas_mes.reduce((s, v) => s + (v.frete_real?.valor_frete_real ?? 0), 0);

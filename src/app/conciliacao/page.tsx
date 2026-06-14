@@ -495,7 +495,7 @@ export default function ConciliacaoPage() {
                 </span>
               </td>
               <td className="px-4 py-3 text-right text-sm font-bold text-green-700">
-                {formatCurrency(vendasFiltradas.reduce((s, v) => s + v.lucro_previsto, 0))}
+                {formatCurrency(vendasFiltradas.reduce((s, v) => s + (v.lucro_previsto ?? 0), 0))}
               </td>
               <td />
             </tr>
