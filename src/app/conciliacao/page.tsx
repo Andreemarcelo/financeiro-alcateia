@@ -329,7 +329,7 @@ export default function ConciliacaoPage() {
     .reduce((s, v) => s + (v.diferenca_frete ?? 0), 0);
 
   // Meses disponíveis
-  const meses = [...new Set(MOCK_VENDAS.map((v) => v.mes_competencia))].sort().reverse();
+  const meses = Array.from(new Set(MOCK_VENDAS.map((v) => v.mes_competencia))).sort().reverse();
 
   return (
     <div className="p-6 space-y-6">

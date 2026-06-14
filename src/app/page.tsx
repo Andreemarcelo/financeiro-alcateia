@@ -15,11 +15,11 @@ import { enrichVendaComFrete, formatCurrency, formatDate } from "@/lib/calculati
 
 // Detecta automaticamente o mês mais recente com dados
 function getMesAtual(vendas: { mes_competencia: string }[]): string {
-  const meses = [...new Set(vendas.map((v) => v.mes_competencia))].sort();
+  const meses = Array.from(new Set(vendas.map((v) => v.mes_competencia))).sort();
   return meses[meses.length - 1] ?? "2026-03";
 }
 function getMesAnterior(mesAtual: string, vendas: { mes_competencia: string }[]): string {
-  const meses = [...new Set(vendas.map((v) => v.mes_competencia))].sort();
+  const meses = Array.from(new Set(vendas.map((v) => v.mes_competencia))).sort();
   const idx = meses.indexOf(mesAtual);
   return idx > 0 ? meses[idx - 1] : meses[0];
 }

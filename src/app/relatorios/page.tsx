@@ -74,7 +74,7 @@ export default function RelatoriosPage() {
       .reduce((s, v) => s + (v.frete_real?.valor_frete_real ?? 0), 0),
   }));
 
-  const meses = [...new Set(MOCK_VENDAS.map((v) => v.mes_competencia))].sort().reverse();
+  const meses = Array.from(new Set(MOCK_VENDAS.map((v) => v.mes_competencia))).sort().reverse();
 
   return (
     <div className="p-6 space-y-6">
