@@ -29,7 +29,7 @@ export default function RelatoriosPage() {
 
   // KPIs do mês
   const fat = vendasMes.reduce((s, v) => s + v.valor_venda, 0);
-  const custo = vendasMes.reduce((s, v) => s + v.custo_mercadoria, 0);
+  const custo = vendasMes.reduce((s, v) => s + (v.custo_mercadoria ?? 0), 0);
   const fretePrev = vendasMes.reduce((s, v) => s + v.frete_previsto_calculado, 0);
   const freteReal = vendasMes.reduce((s, v) => s + (v.frete_real?.valor_frete_real ?? 0), 0);
   const imposto = vendasMes.reduce((s, v) => s + v.imposto_calculado, 0);
